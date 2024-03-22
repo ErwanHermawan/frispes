@@ -1,0 +1,185 @@
+/* ==========================================================================
+  Components Article Item
+  ========================================================================== */
+
+.article {
+  $a: &;
+  &__box {
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      #{$a} {
+        &__img__el {
+          transform: scale(1.1);
+        }
+        &__title {
+          color: color(secondary, 1);
+        }
+      }
+    }
+  }
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: zi(article-link);
+    @include remove-tap-highlight;
+  }
+  &__img {
+    padding-bottom: 56%;
+    position: relative;
+    overflow: hidden;
+    &__el {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      transition: all 0.3s ease;
+    }
+  }
+  &__txt {
+    position: relative;
+    padding: 16px;
+    background-color: color(white);
+  }
+  &__title {
+    @include multiline-ellipsis(2);
+    font-family: ff(title);
+    @include font-size(20);
+    font-weight: fw(400);
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+    @include small {
+      @include font-size(18);
+    }
+  }
+  &__desc,
+  &__position {
+    @include font-size(16);
+    font-weight: fw(500);
+    color: color(grey, 2);
+    margin-bottom: 0;
+    @include small {
+      @include font-size(14);
+    }
+  }
+  &__author {
+    @include font-size(18);
+    font-weight: fw(500);
+    margin-bottom: 0;
+    @include small {
+      @include font-size(16);
+    }
+  }
+  &__avatar {
+    position: absolute;
+    left: 32px;
+    right: 32px;
+    bottom: 32px;
+    font-size: 0;
+    @include medium {
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+    }
+    @include small {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+    }
+    @include x-small {
+      position: static;
+    }
+    &__img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      @include small {
+        width: 48px;
+        height: 48px;
+      }
+      &__el {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &__txt {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 24px;
+      @include small {
+        padding-left: 16px;
+      }
+    }
+  }
+  &__item {
+    &--primary {
+      #{$a} {
+        &__box {
+          @include clearfix;
+        }
+        &__img {
+          float: left;
+          width: 50%;
+          height: 100%;
+          padding-bottom: 0;
+          @include x-small {
+            float: none;
+            width: 100%;
+            height: auto;
+            padding-bottom: 56%;
+          }
+        }
+        &__txt {
+          float: left;
+          width: 50%;
+          height: 100%;
+          padding: 32px;
+          @include medium {
+            padding: 24px;
+          }
+          @include small {
+            padding: 16px;
+          }
+          @include x-small {
+            float: none;
+            width: 100%;
+            height: auto;
+          }
+        }
+        &__title {
+          @include font-size(32);
+          font-weight: fw(700);
+          margin-bottom: 24px;
+          @include large {
+            @include font-size(26);
+          }
+          @include small {
+            @include font-size(24);
+            margin-bottom: 16px;
+          }
+          @include x-small {
+            @include font-size(18);
+            margin-bottom: 8px;
+          }
+        }
+        &__desc {
+          @include multiline-ellipsis(3);
+          @include x-small {
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+  }
+}

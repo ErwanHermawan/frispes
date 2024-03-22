@@ -1,0 +1,88 @@
+//-------------------------------------------------------------------------------
+  @name: Header
+  -------------------------------------------------------------------------------//
+
+-
+  header = {
+    logo: {
+      src: 'frispes.svg',
+      to: 'index.html',
+      alt: 'frispes'
+    },
+    menu: [
+      {
+        to: 'index.html',
+        text: 'Home',
+        classActive: 'home'
+      },
+      {
+        to: 'workspace.html',
+        text: 'Workspace',
+        classActive: 'workspace'
+      },
+      {
+        to: 'service.html',
+        text: 'Service',
+        classActive: 'service'
+      },
+      {
+        to: 'events.html',
+        text: 'Events',
+        classActive: 'events'
+      },
+      {
+        to: 'reviews.html',
+        text: 'Reviews',
+        classActive: 'reviews'
+      },
+      {
+        to: 'contact-us.html',
+        text: 'Contact Us',
+        classActive: 'contact-us'
+      }
+    ],
+    button: [
+      {
+        class: 'white',
+        to: 'login.html',
+        text: 'Log In'
+      },
+      {
+        class: 'secondary',
+        to: 'signup.html',
+        text: 'Sign Up'
+      }
+    ]
+  }
+
+//header
+.header
+  .container
+    .header__inner
+      .header__logo
+        ='\n'
+        a.header__logo__link(href=header.logo.to)
+          ='\n'
+          img.header__logo__img(src='assets/img/logo/'+header.logo.src, alt=header.logo.alt)/
+          ='\n'
+      .header__menu
+        ul.header__menu__list
+          each val in header.menu
+            li.header__menu__item(class=(navActive == val.classActive ? 'header__menu__item--active' : '') class=(val.dropdown !== undefined ? 'header__dropdown' : ''))
+              ='\n'
+              a.header__menu__link(href=val.to) !{val.text}
+              ='\n'
+        .header__menu__btn
+          each val in header.button
+            ='\n'
+            a(href=val.to class='btn btn--'+val.class) !{val.text}
+            ='\n'
+      .header__burger-menu
+        ='\n'
+        button.burger-menu.js-mobile-menu(type='button')
+          each val in [1, 2, 3]
+            ='\n'
+            span.burger-menu__bar
+          ='\n'
+='\n'
+//end-header

@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Components Text Element
+   ========================================================================== */
+
+.txt-el {
+  $txt: &;
+  &__tagline {
+    @include font-size(20);
+    font-weight: fw(500);
+    margin-bottom: 8px;
+    @include medium {
+      @include font-size(18);
+    }
+    @include font-size(16);
+    &::after {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 16px;
+      width: 72px;
+      height: 2px;
+      background-color: color(primary, 1);
+    }
+  }
+  &__title {
+    font-family: ff(title);
+    @include font-size(40);
+    font-weight: fw(700);
+    color: color(primary, 1);
+    margin-bottom: 24px;
+    @include medium {
+      @include font-size(32);
+    }
+    @include small {
+      @include font-size(24);
+      margin-bottom: 16px;
+    }
+  }
+  &__desc {
+    @include font-size(20);
+    font-weight: fw(500);
+    margin-bottom: 0;
+    @include medium {
+      @include font-size(18);
+    }
+    @include small {
+      @include font-size(16);
+    }
+  }
+  &--white {
+    #{$txt} {
+      &__tagline,
+      &__title,
+      &__desc {
+        color: color(white);
+      }
+      &__tagline {
+        &::after {
+          background-color: color(white);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Elements Button
+   ========================================================================== */
+
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 232px;
+  padding: 14px 24px;
+  outline: 0;
+  border: solid 1px transparent;
+  @include font-size(16);
+  font-weight: fw(700);
+  text-align: center;
+  color: color(black);
+  background-color: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  @include remove-tap-highlight;
+  @include x-small {
+    padding: 14px 16px;
+    @include font-size(14);
+  }
+  &--block {
+    display: block;
+    min-width: none;
+    width: 100%;
+  }
+  &--primary {
+    background-color: color(primary, 1);
+    color: color(white);
+    &:hover {
+      background-color: transparent;
+      border-color: color(primary, 1);
+      color: color(primary, 1);
+    }
+  }
+  &--secondary {
+    background-color: color(secondary, 1);
+    color: color(white);
+    &:hover {
+      background-color: transparent;
+      border-color: color(secondary, 1);
+      color: color(secondary, 1);
+    }
+  }
+  &--white {
+    border-color: color(white);
+    background-color: color(white);
+    color: color(secondary, 1);
+    &:hover {
+      color: color(white);
+      border-color: color(primary, 1);
+      background-color: color(primary, 1);
+    }
+  }
+  &--text {
+    padding: 0;
+    font-weight: fw(400);
+    min-width: initial;
+    color: color(secondary, 1);
+    &:hover {
+      color: color(primary, 1);
+      i {
+        transform: translateX(8px);
+      }
+    }
+    i {
+      display: inline-block;
+      vertical-align: middle;
+      @include font-size(26);
+      line-height: 1 !important;
+      padding-left: 8px;
+      transition: transform 0.3s ease;
+    }
+  }
+}

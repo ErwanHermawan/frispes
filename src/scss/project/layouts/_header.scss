@@ -1,0 +1,263 @@
+/* ==========================================================================
+Layout: Header
+========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: zi(header);
+  width: 100%;
+  background-color: color(white);
+  transition: all 0.5s ease;
+  @include large {
+    text-align: center;
+  }
+  .header-on-scroll & {
+    @include shadow(1);
+  }
+  .scroll-down & {
+    transform: translateY(-100%);
+    box-shadow: none;
+  }
+  &__inner {
+    position: relative;
+    @include large {
+      padding: 24px 0;
+      @include clearfix;
+    }
+    @include medium {
+      padding: 16px 0;
+    }
+    @include x-small {
+      padding: 12px 0;
+    }
+    &::before,
+    &::after {
+      @include large {
+        content: '';
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: zi(explore-before);
+        transform: scaleY(0);
+        transform-origin: top center;
+      }
+      .show-nav & {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transform-origin: bottom center;
+      }
+    }
+    &::before {
+      background-color: rgba(color(primary, 1), 0.5);
+      transition: transform 0.5s ease 0.75s;
+      .show-nav & {
+        transition-delay: 0.3s;
+      }
+    }
+    &::after {
+      background-color: rgba(color(primary, 1), 0.7);
+      transition: transform 0.5s ease 0.95s;
+      .show-nav & {
+        transition-delay: 0.5s;
+      }
+    }
+  }
+  &__logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background-image: url(../../assets/img/logo/frispes.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    height: 24px;
+    width: 86px;
+    text-indent: -9999999px;
+    z-index: 10;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+    font-size: 0;
+    line-height: 1;
+    @include large {
+      top: 32px;
+      .show-nav & {
+        left: 0;
+        background-image: url(../../assets/img/logo/frispes-white.svg);
+        z-index: 12;
+      }
+    }
+    @include small {
+      .show-nav & {
+        left: 8px;
+      }
+    }
+  }
+  &__menu {
+    position: relative;
+    text-align: center;
+    @include large {
+      float: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: zi(header-menu);
+      text-align: left;
+      background-color: color(primary, 1);
+      padding: 120px 32px;
+      @include scroll(y);
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform 0.5s ease 0.5s;
+      .show-nav & {
+        transform: none;
+        transform-origin: bottom center;
+        transition-delay: 0;
+      }
+    }
+    @include x-small {
+      padding: 116px 24px 96px;
+    }
+    &__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+      font-size: 0;
+      @include large {
+        padding-right: 80px;
+      }
+      @include large {
+        padding-right: 0;
+        transition: all 0.45s ease;
+      }
+    }
+    &__item {
+      display: inline-block;
+      vertical-align: middle;
+      @include large {
+        display: block;
+        opacity: 0;
+        transform: translateY(24px);
+        margin-bottom: 16px;
+        transition: all 0.5s ease;
+        @for $i from 1 through 6 {
+          $delay: 150 - ($i * 50) + ms;
+          &:nth-child(#{$i}) {
+            transition-delay: $delay;
+          }
+        }
+        .show-nav & {
+          transform: none;
+          opacity: 1;
+          @for $i from 1 through 6 {
+            $delay: 850 + ($i * 50) + ms;
+            &:nth-child(#{$i}) {
+              transition-delay: $delay;
+            }
+          }
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &__link {
+      display: block;
+      padding: 56px 20px;
+      @include font-size(16);
+      font-weight: fw(700);
+      text-decoration: none;
+      transition: all 0.35s ease;
+      @include large {
+        padding: 12px 0;
+      }
+      @include large {
+        @include font-size(20);
+        color: color(white);
+      }
+      @include small {
+        padding: 8px 0;
+        @include font-size(18);
+      }
+      &:hover {
+        color: color(secondary, 1);
+      }
+      .header-on-scroll & {
+        padding: 32px 20px;
+        @include large {
+          padding: 12px 0;
+        }
+        @include small {
+          padding: 8px 0;
+        }
+      }
+    }
+    &__btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      z-index: zi(header-btn);
+      transform: translateY(-50%);
+      font-size: 0;
+      @include large {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        padding: 32px;
+        background-color: color(primary, 1);
+        transform: none;
+        transition: all 0.45s ease;
+        transition-delay: 0;
+        opacity: 0;
+        transform: translateY(24px);
+        .show-nav & {
+          opacity: 1;
+          transform: none;
+          transition-delay: 1.2s;
+        }
+      }
+      @include x-small {
+        width: 100%;
+        padding: 24px;
+      }
+      .btn {
+        min-width: 104px;
+        @include large {
+          padding: 11px 24px;
+          min-width: none;
+          width: 100%;
+          @include font-size(20);
+          margin-bottom: 24px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        @include x-small {
+          width: 46%;
+          margin: 0 16px 0 0;
+          @include font-size(16);
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  &__burger-menu {
+    display: none;
+    @include large {
+      display: block;
+      position: absolute;
+      right: 0;
+      z-index: 10;
+    }
+  }
+}
